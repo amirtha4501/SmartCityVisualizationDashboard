@@ -76,5 +76,3 @@ Unlike traditional 3D apps that load heavy `.gltf` or `.obj` files, this project
 ## ⚙️ Build Optimization
 The `angular.json` is configured with increased budgets (2MB+) to accommodate the concurrent usage of Three.js and ECharts in the same application bundle.
 
----
-**Developed for Advanced Angular Graphics Training.**
