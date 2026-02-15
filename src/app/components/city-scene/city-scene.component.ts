@@ -4,7 +4,6 @@ import { SceneGraphComponent } from './scene-graph.component';
 
 @Component({
   selector: 'app-city-scene',
-  standalone: true,
   template: `
     <ngt-canvas [sceneGraph]="sceneGraph"></ngt-canvas>
   `,

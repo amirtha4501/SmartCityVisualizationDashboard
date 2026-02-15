@@ -1,5 +1,5 @@
 import { Component, CUSTOM_ELEMENTS_SCHEMA, inject, Input, NO_ERRORS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { AsyncPipe } from '@angular/common';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { NgtStore, extend, NgtArgs } from 'angular-three';
@@ -13,7 +13,6 @@ extend({ OrbitControls });
  */
 @Component({
   selector: 'app-moving-vehicle',
-  standalone: true,
   imports: [NgtArgs],
   template: `
     <ngt-mesh (beforeRender)="onBeforeRender($any($event))">
@@ -21,7 +20,7 @@ extend({ OrbitControls });
       <ngt-mesh-standard-material [color]="color" [emissive]="color" [emissiveIntensity]="5"></ngt-mesh-standard-material>
     </ngt-mesh>
   `,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class MovingVehicleComponent {
   @Input() color = '#00f2fe';
@@ -46,8 +45,7 @@ export class MovingVehicleComponent {
  */
 @Component({
   selector: 'app-building',
-  standalone: true,
-  imports: [NgtArgs, CommonModule],
+  imports: [NgtArgs],
   template: `
     <ngt-group [position]="position">
       <!-- Main Structure (Industrial Steel Grey - Higher Visibility) -->
@@ -77,7 +75,7 @@ export class MovingVehicleComponent {
       </ngt-mesh>
     </ngt-group>
   `,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class BuildingComponent {
   @Input() position: [number, number, number] = [0, 0, 0];
@@ -96,8 +94,7 @@ export class BuildingComponent {
 }
 
 @Component({
-  standalone: true,
-  imports: [CommonModule, BuildingComponent, MovingVehicleComponent, NgtArgs],
+  imports: [BuildingComponent, MovingVehicleComponent, NgtArgs, AsyncPipe],
   template: `
     <ngt-color attach="background" *args="['#1a1d21']"></ngt-color>
     <ngt-fog *args="['#1a1d21', 20, 100]"></ngt-fog>
@@ -175,7 +172,7 @@ export class BuildingComponent {
       }
     }
   `,
-  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA]
 })
 export class SceneGraphComponent {
   private readonly store = inject(NgtStore);
